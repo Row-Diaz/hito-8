@@ -1,0 +1,21 @@
+.Card-Container{
+  text-align: center;
+}
+
+th, td{
+  font-size: 14px;
+  width: 25%;
+}
+
+.Card-Container Table {
+  width: 600px;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.Card-Container Button{ 
+  font-size: 14px;
+}
+
+  

@@ -1,0 +1,18 @@
+.active {
+  border: 1px solid white;
+  border-radius: 5px;
+  color: #000000;
+  background-color: #b4b4b4;
+  text-decoration: none;
+  margin: 3px;
+  padding: 2px;
+  }
+  
+.NoActive {
+  border: 1px solid white;
+  border-radius: 5px;
+  color: #ffffff;
+  text-decoration: none;
+  margin: 3px;
+  padding: 2px;
+  }

@@ -1,0 +1,20 @@
+header {
+  background-image: url("/Header.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #eee;
+}
+
+header p {
+  font-size: 1.2em;
+  color: #eee;
+}

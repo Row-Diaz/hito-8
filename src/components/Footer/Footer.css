@@ -1,0 +1,11 @@
+footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 15px 0 5px 0;
+}
+
+footer p {
+  font-size: 14px;
+  color: #ffffff;
+}

@@ -1,0 +1,38 @@
+Nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: #3e3f3e;
+}
+
+.boton1:hover {
+  border: 1px solid #ffffff;
+  background-color: black;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.titulo{
+  font-size: 20px;
+  color: white;
+  padding-right: 25px;
+}
+
+.boton1{
+  text-decoration: none;
+  padding-right: 5px;
+  font-size: 18px;  
+}
+
+.boton2{
+  border: 2px solid #0000ff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.boton2:hover {
+  background-color: #000000;
+}
