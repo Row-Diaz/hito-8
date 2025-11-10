@@ -1,15 +1,21 @@
+// Importaciones necesarias para el contexto de usuario
 import { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
+// Creación del contexto para la gestión del usuario
 const MyContext = createContext()
 
 export const MyProvider = ({ children }) => {
+  // Estado para almacenar el token JWT del usuario autenticado
   const [token, setToken] = useState(null);
+  
+  // Estado para almacenar el email del usuario autenticado
   const [email, setEmail] = useState(null);
 
-  // Login method
+  // Método para iniciar sesión
   const login = async (email, password) => {
     try {
+      // Llamada a la API de login
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
@@ -18,14 +24,16 @@ export const MyProvider = ({ children }) => {
         body: JSON.stringify({ email, password })
       })
   
+      // Verificación de respuesta exitosa
       if (!response.ok) {
         const errorText = await response.text()
         throw new Error(errorText || 'Error en la autenticación')
       }
   
+      // Procesamiento de datos exitosos
       const data = await response.json()
-      setToken(data.token)
-      setEmail(email)
+      setToken(data.token)  // Almacena el token JWT
+      setEmail(email)       // Almacena el email del usuario
       alert("Inicio de Sesion Exitosa!")
     } catch (error) {
       console.error('Error en login:', error.message)
@@ -33,9 +41,10 @@ export const MyProvider = ({ children }) => {
     }
   }
   
-  // Register method
+  // Método para registrar un nuevo usuario
   const register = async (email, password) => {
     try {
+      // Llamada a la API de registro
       const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: {
@@ -44,14 +53,16 @@ export const MyProvider = ({ children }) => {
         body: JSON.stringify({ email, password })
       });
 
+      // Verificación de respuesta exitosa
       if (!response.ok) {
         const errorText = await response.text()
         throw new Error(errorText || 'Error en el registro')
       }
 
+      // Procesamiento de datos exitosos - login automático tras registro
       const data = await response.json()
-      setToken(data.token)
-      setEmail(email)
+      setToken(data.token)  // Almacena el token JWT
+      setEmail(email)       // Almacena el email del usuario
       alert("Registro Exitoso!")
     } catch (error) {
       console.error('Error en registro:', error.message)
@@ -59,25 +70,26 @@ export const MyProvider = ({ children }) => {
     }
   }
 
-  // Logout method
+  // Método para cerrar sesión
   const logout = () => {
-    setToken(null)
-    setEmail(null) // <-- Cambiado aquí
+    setToken(null)  // Limpia el token
+    setEmail(null)  // Limpia el email
   }
 
-  // Profile method
+  // Método para obtener el perfil del usuario autenticado
   const getProfile = async () => {
     try {
+      // Llamada a la API del perfil usando el token de autenticación
       const response = await fetch('http://localhost:5000/api/auth/me', {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}` // Token JWT en el header
         }
       })
 
       const data = await response.json()
       if (response.ok) {
-        return data
+        return data // Retorna los datos del perfil
       } else {
         throw new Error(data.message || 'Failed to fetch profile')
       }
@@ -87,15 +99,25 @@ export const MyProvider = ({ children }) => {
     }
   }
 
+  // Provider que expone todas las funciones y estados del contexto
   return (
-    <MyContext.Provider value={{ token, email, login, register, logout, getProfile }}>
+    <MyContext.Provider value={{ 
+      token,      // Token JWT actual
+      email,      // Email del usuario
+      login,      // Función de login
+      register,   // Función de registro
+      logout,     // Función de logout
+      getProfile  // Función para obtener perfil
+    }}>
       {children}
     </MyContext.Provider>
   )
 }
 
-export const useUser = () => useContext(MyContext) // <-- Cambiado aquí
+// Hook personalizado para usar el contexto de usuario
+export const useUser = () => useContext(MyContext)
 
+// Validación de PropTypes
 MyProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
