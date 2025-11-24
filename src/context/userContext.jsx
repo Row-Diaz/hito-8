@@ -12,24 +12,27 @@ export const MyProvider = ({ children }) => {
   // Estado para almacenar el email del usuario autenticado
   const [email, setEmail] = useState(null);
 
+  // Variable de entorno para la URL de la API
+  const API_URL = import.meta.env.VITE_API_URL;
+
   // Método para iniciar sesión
   const login = async (email, password) => {
     try {
-      // Llamada a la API de login
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      // Llamada a la API de login usando la variable de entorno
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email, password })
       })
-  
+
       // Verificación de respuesta exitosa
       if (!response.ok) {
         const errorText = await response.text()
         throw new Error(errorText || 'Error en la autenticación')
       }
-  
+
       // Procesamiento de datos exitosos
       const data = await response.json()
       setToken(data.token)  // Almacena el token JWT
