@@ -13,9 +13,12 @@ function Home() {
     getPizzas();
   }, []);
 
+  // Variable de entorno para la URL de la API
+  const API_URL = import.meta.env.VITE_API_URL;
+
   // Función asíncrona para obtener todas las pizzas desde la API
   const getPizzas = async () => {
-    const respuesta = await fetch ("http://localhost:5000/api/pizzas")
+    const respuesta = await fetch (`${API_URL}/pizzas`)
     const pizzas = await respuesta.json()
     setPizzas(pizzas)
   }

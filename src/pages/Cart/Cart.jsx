@@ -14,11 +14,14 @@ export const Cart = () => {
   // Obtención del token del usuario para autenticación
   const { token } = useUser();
 
+  // Variable de entorno para la URL de la API
+  const API_URL = import.meta.env.VITE_API_URL;
+
   // Función asíncrona para procesar el pago del carrito
   const handlePayment = async () => {
     try {
       // Llamada a la API para procesar el checkout
-      const response = await fetch('http://localhost:5000/api/checkouts', {
+      const response = await fetch(`${API_URL}/checkouts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

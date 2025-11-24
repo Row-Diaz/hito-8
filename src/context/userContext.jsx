@@ -47,8 +47,8 @@ export const MyProvider = ({ children }) => {
   // Método para registrar un nuevo usuario
   const register = async (email, password) => {
     try {
-      // Llamada a la API de registro
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      // Llamada a la API de registro usando la variable de entorno
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -82,8 +82,8 @@ export const MyProvider = ({ children }) => {
   // Método para obtener el perfil del usuario autenticado
   const getProfile = async () => {
     try {
-      // Llamada a la API del perfil usando el token de autenticación
-      const response = await fetch('http://localhost:5000/api/auth/me', {
+      // Llamada a la API del perfil usando el token de autenticación y la variable de entorno
+      const response = await fetch(`${API_URL}/auth/me`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}` // Token JWT en el header
