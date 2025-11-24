@@ -19,12 +19,15 @@ export function Pizza() {
     getPizza();
   }, []);
 
-  // Función asíncrona para obtener los datos de una pizza específica desde la API
-  const getPizza = async () => {
-    const res = await fetch(`http://localhost:5000/api/pizzas/${id}`);
-    const pizzaData = await res.json();
-    setPizza(pizzaData);
-  };
+    // Variable de entorno para la URL de la API
+    const API_URL = import.meta.env.VITE_API_URL;
+
+    // Función asíncrona para obtener los datos de una pizza específica desde la API
+    const getPizza = async () => {
+        const res = await fetch(`${API_URL}/pizzas/${id}`);
+        const pizzaData = await res.json();
+        setPizza(pizzaData);
+    };
 
   // Función para navegar de regreso al home
   const Home = () => {
