@@ -3,5 +3,5 @@ Form, h3, input, label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 6px;
+  margin-top: 5px;
 }
