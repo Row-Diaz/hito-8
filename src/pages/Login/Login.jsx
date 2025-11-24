@@ -1,4 +1,4 @@
-import './login.css'
+import './Login.css'
 import { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
